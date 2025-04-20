@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# SQL Server Management Studio Solution File, Format Version 20.00
+VisualStudioVersion = 15.0.28307.421
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{4F2E2C19-372F-40D8-9FA7-9D2138C6997A}") = "Examen_Renapo", "Examen_Renapo\Examen_Renapo.ssmssqlproj", "{7E968AD9-A398-4D97-ADAC-D522FE3A9C18}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Default|Default = Default|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7E968AD9-A398-4D97-ADAC-D522FE3A9C18}.Default|Default.ActiveCfg = Default
+		{D7A4BCA7-CEA6-4E1B-B766-E522C289B5B7}.Default|Default.ActiveCfg = Default
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {39F578C9-29C4-48A6-A1EC-439093F17ADE}
+	EndGlobalSection
+EndGlobal
