@@ -76,6 +76,12 @@
           <AssociatedConnUserName />
           <FullPath>ConsultasOptim.sql</FullPath>
         </FileNode>
+        <FileNode Name="Indices-Vistas.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:LAPTOP-1FNBH95I\SQLEXPRESS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>LAPTOP-1FNBH95I\SQLEXPRESS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Indices-Vistas.sql</FullPath>
+        </FileNode>
         <FileNode Name="Tablas.sql">
           <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:LAPTOP-1FNBH95I\SQLEXPRESS:True</AssociatedConnectionMoniker>
           <AssociatedConnSrvName>LAPTOP-1FNBH95I\SQLEXPRESS</AssociatedConnSrvName>
