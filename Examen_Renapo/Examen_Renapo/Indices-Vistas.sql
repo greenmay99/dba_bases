@@ -283,5 +283,4 @@ FROM InformacionGeneral
 WHERE edad_info_gen >= 20 AND edad_info_gen <= 25;
 GO
 
-SELECT * 
-FROM Vista;
+SELECT * FROM Vista;

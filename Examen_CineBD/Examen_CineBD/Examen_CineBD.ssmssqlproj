@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
-<SqlWorkbenchSqlProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="Cine">
+<SqlWorkbenchSqlProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="Examen_CineBD">
   <Items>
     <LogicalFolder Name="Connections" Type="2" Sorted="true">
       <Items>
         <ConnectionNode Name="LAPTOP-1FNBH95I\SQLEXPRESS:LAPTOP-1FNBH95I\M M M">
-          <Created>2025-04-20T12:46:18.7677567-06:00</Created>
+          <Created>2025-05-05T22:55:25.0825396-06:00</Created>
           <Type>SQL</Type>
           <Server>LAPTOP-1FNBH95I\SQLEXPRESS</Server>
           <UserName />
@@ -22,23 +22,11 @@
     </LogicalFolder>
     <LogicalFolder Name="Queries" Type="0" Sorted="true">
       <Items>
-        <FileNode Name="CambioVarios.sql">
+        <FileNode Name="Examen.sql">
           <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:LAPTOP-1FNBH95I\SQLEXPRESS:True</AssociatedConnectionMoniker>
           <AssociatedConnSrvName>LAPTOP-1FNBH95I\SQLEXPRESS</AssociatedConnSrvName>
           <AssociatedConnUserName />
-          <FullPath>CambioVarios.sql</FullPath>
-        </FileNode>
-        <FileNode Name="ForeignKeys.sql">
-          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:LAPTOP-1FNBH95I\SQLEXPRESS:True</AssociatedConnectionMoniker>
-          <AssociatedConnSrvName>LAPTOP-1FNBH95I\SQLEXPRESS</AssociatedConnSrvName>
-          <AssociatedConnUserName />
-          <FullPath>ForeignKeys.sql</FullPath>
-        </FileNode>
-        <FileNode Name="Tablas.sql">
-          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:LAPTOP-1FNBH95I\SQLEXPRESS:True</AssociatedConnectionMoniker>
-          <AssociatedConnSrvName>LAPTOP-1FNBH95I\SQLEXPRESS</AssociatedConnSrvName>
-          <AssociatedConnUserName />
-          <FullPath>Tablas.sql</FullPath>
+          <FullPath>Examen.sql</FullPath>
         </FileNode>
       </Items>
     </LogicalFolder>
