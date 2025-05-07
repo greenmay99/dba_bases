@@ -424,6 +424,7 @@ EXEC InsertarCliente 'Pamela', 'Diaz', 'Suarez', 'pamela.diaz@example.com', '555
 EXEC InsertarCliente 'Ricardo', 'Vargas', 'Pérez', 'ricardo.vargas@example.com', '5557778899', '1992-09-15', 'M', 'Paseo de la Reforma', '1415', 'Juarez', 'Ciudad de México', 'Ciudad de México', '06600';
 
 -- Insertar 15 Empleados
+
 EXEC InsertarEmpleado 'Alejandro', 'Mendoza', 'Torres', 'alejandro.mendoza@email.com', '5512341122', '1990-03-10', 'M', 'Av. Reforma', '301', 'Centro', 'Ciudad de México', 'Ciudad de México', '06000', 'AMTO900310HDFMRN01', 'Gerente', 'M', 1;
 EXEC InsertarEmpleado 'Beatriz', 'Lopez', 'Soto', 'beatriz.lopez@email.com', '5523452233', '1992-07-14', 'F', 'Calle Juárez', '302', 'Doctores', 'Ciudad de México', 'Ciudad de México', '06720', 'BLSO920714MDFMNR02', 'Taquillera', 'V', 1;
 EXEC InsertarEmpleado 'Camilo', 'Gutierrez', 'Diaz', 'camilo.gutierrez@email.com', '5534563344', '1988-12-20', 'M', 'Insurgentes Sur', '303', 'Del Valle', 'Ciudad de México', 'Ciudad de México', '03100', 'CGDI881220HDFRLS03', 'Proyeccionista', 'M', 1;
@@ -593,6 +594,8 @@ INNER JOIN ListaDomicilio l
 CREATE NONCLUSTERED INDEX IDX_NuevoRegistro_Tipo ON NuevoRegistro(tipo_nregistro);
 CREATE NONCLUSTERED INDEX IDX_NuevoRegistro_IdOriginal ON NuevoRegistro(id_original_nregistro);
 
+
+
 -- h) Crear vistas para las nuevas tablas
 GO
 CREATE OR ALTER VIEW VistaReporte1 AS
@@ -626,12 +629,15 @@ CREATE TABLE Registro2 (
     cp_registro2 VARCHAR(10)
 );
 
-select * from Registro2;
+-- Realizar una copia de la tabla Registro2
 
+BEGIN TRAN;
+SELECT * INTO Registro2_copia FROM Registro2;
+DROP TABLE Registro2;
 -- Insertar registros que cumplen la edad y género y últimos domicilios
 
 -- De Cliente
-INSERT INTO Registro2 (tipo_registro2, id_original_registro2, nombre_registro2, fecha_nac_registro2, genero_registro2, 
+INSERT INTO Registro2_copia (tipo_registro2, id_original_registro2, nombre_registro2, fecha_nac_registro2, genero_registro2, 
 calle_registro2, numero_registro2, colonia_registro2, ciudad_registro2, estado_registro2, cp_registro2)
 SELECT 'Cliente', id_cliente, nombre_cliente, fechaNac_cliente, genero_cliente, calle_cliente, numero_cliente, colonia_cliente, ciudad_cliente, estado_cliente, cp_cliente
 FROM (
@@ -644,7 +650,7 @@ ORDER BY id_cliente DESC
 OFFSET 0 ROWS FETCH NEXT 5 ROWS ONLY;
 
 -- De Empleado
-INSERT INTO Registro2 (tipo_registro2, id_original_registro2, nombre_registro2, fecha_nac_registro2, genero_registro2, 
+INSERT INTO Registro2_copia (tipo_registro2, id_original_registro2, nombre_registro2, fecha_nac_registro2, genero_registro2, 
 calle_registro2, numero_registro2, colonia_registro2, ciudad_registro2, estado_registro2, cp_registro2)
 SELECT 'Empleado', id_empleado, nombre_empleado, fechaNac_empleado, genero_empleado, calle_empleado, numero_empleado, colonia_empleado, ciudad_empleado, estado_empleado, cp_empleado
 FROM (
@@ -657,7 +663,7 @@ ORDER BY id_empleado DESC
 OFFSET 0 ROWS FETCH NEXT 5 ROWS ONLY;
 
 -- De Proveedor 
-INSERT INTO Registro2 (tipo_registro2, id_original_registro2, nombre_registro2, fecha_nac_registro2, genero_registro2, 
+INSERT INTO Registro2_copia (tipo_registro2, id_original_registro2, nombre_registro2, fecha_nac_registro2, genero_registro2, 
 calle_registro2, numero_registro2, colonia_registro2, ciudad_registro2, estado_registro2, cp_registro2)
 SELECT 'Proveedor', id_proveedor, nombre_proveedor, fechaNac_proveedor, NULL, calle_proveedor, numero_proveedor, colonia_proveedor, ciudad_proveedor, estado_proveedor, cp_proveedor
 FROM (
@@ -667,16 +673,10 @@ FROM (
 ORDER BY id_proveedor DESC
 OFFSET 0 ROWS FETCH NEXT 5 ROWS ONLY;
 
+select * from Registro2_copia;
 
--- Realizar una copia de la tabla Registro2
-SELECT * INTO Registro2_copia FROM Registro2;
 
--- Verificar que se copió correctamente
-SELECT * FROM Registro2_copia;
-
--- Regresar a la versión original de la tabla
-DROP TABLE Registro2;
-EXEC sp_rename 'Registro2_copia', 'Registro2';
+---- regresar a la version original
+ROLLBACK;
 
 select * from Registro2;
-
