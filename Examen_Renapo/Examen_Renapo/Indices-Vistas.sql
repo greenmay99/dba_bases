@@ -1,6 +1,8 @@
 -----1. Tabla "InformacionGeneral" --------------
 use Renapo;
 
+IF OBJECT_ID('InformacionGeneral') IS NOT NULL DROP TABLE InformacionGeneral;
+
 CREATE TABLE InformacionGeneral (
 	id_info_gen INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
 	nombre_info_gen VARCHAR(50) NOT NULL,
@@ -74,6 +76,8 @@ EXEC InsertarNuevoUsuario 'Elena', 'Castillo', 'Delgado', '5512345684', 'H', 24;
 
 select * from InformacionGeneral;
 
+
+--- 2 registros de Trabajador (80-20)
 INSERT INTO InformacionGeneral (nombre_info_gen, ap_info_gen, am_info_gen, genero_info_gen, edad_info_gen)
 SELECT 
     nombre_Trab, ap_Trab, am_Trab, genero_Trabajador, edad_Trabajador
@@ -82,7 +86,7 @@ WHERE genero_Trabajador = 'H' AND edad_Trabajador BETWEEN 20 AND 30
 ORDER BY id_Trabajador
 OFFSET 0 ROWS FETCH NEXT 2 ROWS ONLY;
 
-
+-- 6 registros de Representante
 INSERT INTO InformacionGeneral (nombre_info_gen, ap_info_gen, am_info_gen, genero_info_gen, edad_info_gen)
 SELECT 
     nombre_Rep, ap_Rep, am_Rep, genero_Rep, edad_Rep
@@ -91,7 +95,7 @@ WHERE genero_Rep = 'H' AND edad_Rep BETWEEN 20 AND 30
 ORDER BY id_Representante
 OFFSET 0 ROWS FETCH NEXT 6 ROWS ONLY;
 
-
+select * from InformacionGeneral;
 
 
 
@@ -251,6 +255,8 @@ WHERE edad_info_gen >= 20 AND edad_info_gen <= 25;
 
 
 ---- 5. guardar en otra tabla "NuevaInformacion"
+
+IF OBJECT_ID('NuevaInformacion') IS NOT NULL DROP TABLE NuevaInformacion;
 
 CREATE TABLE NuevaInformacion (
     nombre_info_gen VARCHAR(50),

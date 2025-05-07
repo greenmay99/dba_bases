@@ -28,6 +28,12 @@
           <AssociatedConnUserName />
           <FullPath>AlterTables.sql</FullPath>
         </FileNode>
+        <FileNode Name="edadNuevo_usuario.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:LAPTOP-1FNBH95I\SQLEXPRESS:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>LAPTOP-1FNBH95I\SQLEXPRESS</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>edadNuevo_usuario.sql</FullPath>
+        </FileNode>
         <FileNode Name="InsertInto.sql">
           <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:LAPTOP-1FNBH95I\SQLEXPRESS:True</AssociatedConnectionMoniker>
           <AssociatedConnSrvName>LAPTOP-1FNBH95I\SQLEXPRESS</AssociatedConnSrvName>
@@ -40,29 +46,23 @@
           <AssociatedConnUserName />
           <FullPath>Consultas.sql</FullPath>
         </FileNode>
-        <FileNode Name="SQLQuery2.sql">
+        <FileNode Name="Practica2pt1.sql">
           <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:LAPTOP-1FNBH95I\SQLEXPRESS:True</AssociatedConnectionMoniker>
           <AssociatedConnSrvName>LAPTOP-1FNBH95I\SQLEXPRESS</AssociatedConnSrvName>
           <AssociatedConnUserName />
-          <FullPath>SQLQuery2.sql</FullPath>
+          <FullPath>Practica2pt1.sql</FullPath>
         </FileNode>
-        <FileNode Name="SQLQuery3.sql">
+        <FileNode Name="Practica2pt2.sql">
           <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:LAPTOP-1FNBH95I\SQLEXPRESS:True</AssociatedConnectionMoniker>
           <AssociatedConnSrvName>LAPTOP-1FNBH95I\SQLEXPRESS</AssociatedConnSrvName>
           <AssociatedConnUserName />
-          <FullPath>SQLQuery3.sql</FullPath>
+          <FullPath>Practica2pt2.sql</FullPath>
         </FileNode>
-        <FileNode Name="SQLQuery4.sql">
+        <FileNode Name="Practica2pt3.sql">
           <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:LAPTOP-1FNBH95I\SQLEXPRESS:True</AssociatedConnectionMoniker>
           <AssociatedConnSrvName>LAPTOP-1FNBH95I\SQLEXPRESS</AssociatedConnSrvName>
           <AssociatedConnUserName />
-          <FullPath>SQLQuery4.sql</FullPath>
-        </FileNode>
-        <FileNode Name="SQLQuery5.sql">
-          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:LAPTOP-1FNBH95I\SQLEXPRESS:True</AssociatedConnectionMoniker>
-          <AssociatedConnSrvName>LAPTOP-1FNBH95I\SQLEXPRESS</AssociatedConnSrvName>
-          <AssociatedConnUserName />
-          <FullPath>SQLQuery5.sql</FullPath>
+          <FullPath>Practica2pt3.sql</FullPath>
         </FileNode>
         <FileNode Name="Procedure.sql">
           <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:LAPTOP-1FNBH95I\SQLEXPRESS:True</AssociatedConnectionMoniker>
