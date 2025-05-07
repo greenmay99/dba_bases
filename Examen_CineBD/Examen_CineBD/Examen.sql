@@ -3,7 +3,7 @@ CREATE DATABASE Cine;
 USE Cine;
 
 ----- TABLAS ------------------------------------
-
+select * from Cliente;
 CREATE TABLE Cliente (
 	id_cliente INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
 	nombre_cliente VARCHAR (50) NOT NULL,
@@ -516,7 +516,6 @@ CREATE TABLE ListaDomicilio (
     id_registro INT IDENTITY(1,1) PRIMARY KEY,
     tipo VARCHAR(20),
     id_original INT,
-    nombre VARCHAR(150),
     calle VARCHAR(100),
     numero VARCHAR(20),
     colonia VARCHAR(50),
@@ -528,22 +527,22 @@ CREATE TABLE ListaDomicilio (
 select * from ListaDomicilio;
 
 -- Insertar últimos 5 clientes
-INSERT INTO ListaDomicilio (tipo, id_original, nombre, calle, numero, colonia, ciudad, estado, cp)
-SELECT 'Cliente', id_cliente, nombre_cliente, calle_cliente, numero_cliente, colonia_cliente, ciudad_cliente, estado_cliente, cp_cliente
+INSERT INTO ListaDomicilio (tipo, id_original, calle, numero, colonia, ciudad, estado, cp)
+SELECT 'Cliente', id_cliente, calle_cliente, numero_cliente, colonia_cliente, ciudad_cliente, estado_cliente, cp_cliente
 FROM Cliente
 ORDER BY id_cliente DESC
 OFFSET 0 ROWS FETCH NEXT 5 ROWS ONLY;
 
 -- Insertar últimos 5 empleados
-INSERT INTO ListaDomicilio (tipo, id_original, nombre, calle, numero, colonia, ciudad, estado, cp)
-SELECT 'Empleado', id_empleado, nombre_empleado, calle_empleado, numero_empleado, colonia_empleado, ciudad_empleado, estado_empleado, cp_empleado
+INSERT INTO ListaDomicilio (tipo, id_original, calle, numero, colonia, ciudad, estado, cp)
+SELECT 'Empleado', id_empleado, calle_empleado, numero_empleado, colonia_empleado, ciudad_empleado, estado_empleado, cp_empleado
 FROM Empleado
 ORDER BY id_empleado DESC
 OFFSET 0 ROWS FETCH NEXT 5 ROWS ONLY;
 
 -- Insertar últimos 5 proveedores
-INSERT INTO ListaDomicilio (tipo, id_original, nombre, calle, numero, colonia, ciudad, estado, cp)
-SELECT 'Proveedor', id_proveedor, nombre_proveedor, calle_proveedor, numero_proveedor, colonia_proveedor, ciudad_proveedor, estado_proveedor, cp_proveedor
+INSERT INTO ListaDomicilio (tipo, id_original, calle, numero, colonia, ciudad, estado, cp)
+SELECT 'Proveedor', id_proveedor, calle_proveedor, numero_proveedor, colonia_proveedor, ciudad_proveedor, estado_proveedor, cp_proveedor
 FROM Proveedor
 ORDER BY id_proveedor DESC
 OFFSET 0 ROWS FETCH NEXT 5 ROWS ONLY;
@@ -669,13 +668,13 @@ ORDER BY id_proveedor DESC
 OFFSET 0 ROWS FETCH NEXT 5 ROWS ONLY;
 
 
--- iii. Realizar una copia de la tabla Registro2
+-- Realizar una copia de la tabla Registro2
 SELECT * INTO Registro2_copia FROM Registro2;
 
 -- Verificar que se copió correctamente
 SELECT * FROM Registro2_copia;
 
--- iv. Regresar a la versión original de la tabla
+-- Regresar a la versión original de la tabla
 DROP TABLE Registro2;
 EXEC sp_rename 'Registro2_copia', 'Registro2';
 
